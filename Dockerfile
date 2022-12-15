@@ -2,9 +2,8 @@ FROM node:16-alpine as builder
 WORKDIR /local/usr/src
 
 COPY package.json .
-COPY .npmrc .
 
-RUN npm install
+RUN npm     
 
 COPY . .
 
@@ -14,6 +13,7 @@ FROM node:16-alpine as runner
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV MINDICATOR_API=https://mindicador.cl/api
 
 RUN addgroup --system --gid 1001 nonroot
 RUN adduser --system --uid 1001 nonroot
